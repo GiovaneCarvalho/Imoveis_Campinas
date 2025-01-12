@@ -11,5 +11,9 @@ url = sites[0].strip()
 infos = scraper.get(url)
 soup = BeautifulSoup(infos.content, 'html.parser')
 
+imoveis = soup.find_all("a", {"class": "property-card__content-link js-card-title"}, href = True)
 
-print(soup)
+link_to_imoveis = [imovel['href'] for imovel in imoveis]
+
+for imovel in link_to_imoveis:
+    print(f'Link para o imovel: {imovel}')
